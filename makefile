@@ -652,7 +652,8 @@ ifeq "$(WINDOWS)" "YES"
 else ifeq "$(LINUX)" "YES"
 	ifeq "$(ARCH64)" "YES"
 		CONFIG_FLAGS = --disable-renaming --disable-extras --disable-layout --disable-samples \
-			--with-data-packaging=archive --prefix=$(PRIVATE_HDR_PREFIX) --with-library-bits=64 \
+			--enable-shared --enable-static --disable-plugins --disable-dyload \
+			--with-data-packaging=auto --prefix=$(PRIVATE_HDR_PREFIX) --with-library-bits=64 \
 			$(DRAFT_FLAG)
 	else
 		CONFIG_FLAGS = --disable-renaming --disable-extras --disable-layout --disable-samples \
@@ -885,33 +886,33 @@ else ifeq "$(LINUX)" "YES"
 			CC="$(CC)" \
 			CXX="$(CXX)" \
 			CFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -fno-exceptions -fvisibility=hidden" \
-			CXXFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
+			CXXFLAGS="-std=c++11 -DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
 			TZDATA="$(TZDATA)" \
-			DYLD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib64"
+			LD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib64"
 
 		ENV= APPLE_INTERNAL_DIR="$(APPLE_INTERNAL_DIR)" \
 			CC="$(CC)" \
 			CXX="$(CXX)" \
 			CFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -fno-exceptions -fvisibility=hidden" \
-			CXXFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
+			CXXFLAGS="-std=c++11 -DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
 			TZDATA="$(TZDATA)" \
-			DYLD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib64"
+			LD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib64"
 
 		ENV_DEBUG= APPLE_INTERNAL_DIR="$(APPLE_INTERNAL_DIR)" \
 			CC="$(CC)" \
 			CXX="$(CXX)" \
 			CFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -O0 -gfull -fno-exceptions -fvisibility=hidden" \
-			CXXFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -O0 -gfull -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
+			CXXFLAGS="-std=c++11 -DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -O0 -gfull -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
 			TZDATA="$(TZDATA)" \
-			DYLD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib64"
+			LD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib64"
 
 		ENV_PROFILE= APPLE_INTERNAL_DIR="$(APPLE_INTERNAL_DIR)" \
 			CC="$(CC)" \
 			CXX="$(CXX)" \
 			CFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -pg -fno-exceptions -fvisibility=hidden" \
-			CXXFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -pg -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
+			CXXFLAGS="-std=c++11 -DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m64 -g -Os -pg -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
 			TZDATA="$(TZDATA)" \
-			DYLD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib64"
+			LD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib64"
 	else
 		ENV_CONFIGURE= APPLE_INTERNAL_DIR="$(APPLE_INTERNAL_DIR)" \
 			CPPFLAGS="-DU_DISABLE_RENAMING=1 $(DEFINE_BUILD_LEVEL)" \
@@ -920,7 +921,7 @@ else ifeq "$(LINUX)" "YES"
 			CFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m32 -g -Os -fno-exceptions -fvisibility=hidden" \
 			CXXFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m32 -g -Os -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
 			TZDATA="$(TZDATA)" \
-			DYLD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib"
+			LD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib"
 
 		ENV= APPLE_INTERNAL_DIR="$(APPLE_INTERNAL_DIR)" \
 			CC="$(CC)" \
@@ -928,7 +929,7 @@ else ifeq "$(LINUX)" "YES"
 			CFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m32 -g -Os -fno-exceptions -fvisibility=hidden" \
 			CXXFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m32 -g -Os -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
 			TZDATA="$(TZDATA)" \
-			DYLD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib"
+			LD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib"
 
 		ENV_DEBUG= APPLE_INTERNAL_DIR="$(APPLE_INTERNAL_DIR)" \
 			CC="$(CC)" \
@@ -936,7 +937,7 @@ else ifeq "$(LINUX)" "YES"
 			CFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m32 -O0 -gfull -fno-exceptions -fvisibility=hidden" \
 			CXXFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m32 -O0 -gfull -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
 			TZDATA="$(TZDATA)" \
-			DYLD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib"
+			LD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib"
 
 		ENV_PROFILE= APPLE_INTERNAL_DIR="$(APPLE_INTERNAL_DIR)" \
 			CC="$(CC)" \
@@ -944,7 +945,7 @@ else ifeq "$(LINUX)" "YES"
 			CFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m32 -g -Os -pg -fno-exceptions -fvisibility=hidden" \
 			CXXFLAGS="-DU_SHOW_CPLUSPLUS_API=1 -DU_SHOW_INTERNAL_API=1 -DICU_DATA_DIR=\"\\\"$(DATA_LOOKUP_DIR)\\\"\" -DICU_DATA_DIR_PREFIX_ENV_VAR=\"\\\"$(DATA_DIR_PREFIX_ENV_VAR)\\\"\" -m32 -g -Os -pg -fno-exceptions -fvisibility=hidden -fvisibility-inlines-hidden" \
 			TZDATA="$(TZDATA)" \
-			DYLD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib"
+			LD_LIBRARY_PATH="$(DSTROOT)/usr/local/lib"
 	endif
 else
 	CPPOPTIONS =
@@ -1055,7 +1056,7 @@ ADJUST_SOURCES = \
 		elif test "$(WINDOWS)" = "YES"; then \
 			patch -p1 <$(SRCROOT)/windowspatchconfig.txt; \
 		else \
-			patch -p1 <$(SRCROOT)/patchconfig.txt; \
+			patch -N -p1 <$(SRCROOT)/patchconfig.txt; \
 		fi; \
 		if test "$(WINDOWS)" = "YES"; then \
 			mv data/unidata/base_unidata/*.txt data/unidata/; \
@@ -1163,7 +1164,8 @@ icu debug profile : $(OBJROOT_CURRENT)/Makefile
 				ln -fs ./$(DATA_BUILD_SUBDIR)/$(L_DATA_FILE); \
 			else \
 				DYLD_LIBRARY_PATH=$(ICUPKGTOOLIBS) \
-				$(ICUPKGTOOL) -tl ./$(DATA_BUILD_SUBDIR)/$(B_DATA_FILE) $(L_DATA_FILE); \
+				LD_LIBRARY_PATH=$(ICUPKGTOOLIBS) \
+				#$(ICUPKGTOOL) -tl ./$(DATA_BUILD_SUBDIR)/$(B_DATA_FILE) $(L_DATA_FILE); \
 			fi; \
 			printf $(TZDATA_FORMAT_STRING) > $(TZDATA_FORMAT_FILE); \
 		fi; \
